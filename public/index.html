@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intérprete Prolog con IA — Agente que ejecuta y explica tu código</title>
+  <meta name="description" content="Pega tu código Prolog y una consulta: el agente de IA lo ejecuta, muestra la respuesta exacta y explica paso a paso unificación, backtracking, corte y negación como fallo." />
+  <meta name="theme-color" content="#0b0a1a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237c3aed'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='white' font-family='monospace' font-weight='bold'%3E%3F-%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span></div>
+
+  <header class="hero">
+    <div class="badge"><span class="dot"></span> Unidad III · Programación Lógica</div>
+    <h1>Intérprete <span class="grad">Prolog</span> con agente de IA</h1>
+    <p class="subtitle">Pega tu programa y una consulta <code>?- ...</code>. El agente la ejecuta, te da la respuesta exacta y te explica cómo razonó Prolog.</p>
+  </header>
+
+  <main class="layout">
+    <section class="card editor-card" aria-labelledby="editor-title">
+      <div class="card-head">
+        <h2 id="editor-title"><span class="ico">⌨</span> Código Prolog y consulta</h2>
+        <div class="select-wrap">
+          <label for="example-select" class="sr-only">Cargar un ejemplo</label>
+          <select id="example-select"><option value="">Cargar ejemplo…</option></select>
+        </div>
+      </div>
+
+      <div class="chips" id="example-chips" role="group" aria-label="Temas de ejemplo"></div>
+
+      <div class="editor">
+        <textarea id="code-input" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Código Prolog y consulta" placeholder="miembro(X, [X|_]).
+miembro(X, [_|T]) :- miembro(X, T).
+?- miembro(b, [a,b,c])."></textarea>
+      </div>
+      <p class="hint">Escribe los hechos y reglas, y una o varias consultas que empiecen con <code>?-</code> y terminen en punto. Atajo: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></p>
+
+      <div class="actions">
+        <button id="send-btn" class="btn primary" type="button"><span class="btn-label">Enviar al agente</span><span class="spinner" aria-hidden="true"></span></button>
+        <button id="clear-btn" class="btn ghost" type="button">Limpiar</button>
+      </div>
+    </section>
+
+    <section class="card result-card" aria-labelledby="result-title" aria-live="polite">
+      <div class="card-head">
+        <h2 id="result-title"><span class="ico">✦</span> Respuesta del agente</h2>
+        <span id="engine-status" class="status-pill">Listo</span>
+      </div>
+      <div id="result-area" class="result-area">
+        <div class="empty">
+          <div class="empty-icon">?-</div>
+          <p>Aquí aparecerá <strong>“Esta es la respuesta”</strong> con el resultado y su explicación.</p>
+          <p class="muted">Elige un ejemplo o pega tu propio código.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="topics" aria-labelledby="topics-title">
+    <h2 id="topics-title">Temas que el agente interpreta</h2>
+    <ul class="topic-grid">
+      <li><b>Hechos y reglas</b><span>predicados, tipos de datos, variables</span></li>
+      <li><b>Operadores aritméticos</b><span><code>is</code>, <code>mod</code>, <code>//</code>, <code>**</code></span></li>
+      <li><b>Listas</b><span><code>[H|T]</code>, recursión, append</span></li>
+      <li><b>Negación y disyunción</b><span><code>\+</code> y <code>;</code></span></li>
+      <li><b>Interpretación de cláusulas</b><span>orden, unificación, backtracking</span></li>
+      <li><b>Corte y alternativas</b><span><code>!</code>, <code>-&gt;</code>, <code>once/1</code></span></li>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <p>Motor de ejecución: Tau Prolog · Explicaciones: IA generativa (Gemini) con respaldo local.</p>
+  </footer>
+
+  <script src="js/vendor/tau-prolog.js"></script>
+  <script src="js/vendor/tau-lists.js"></script>
+  <script src="js/examples.js"></script>
+  <script src="js/prolog-engine.js"></script>
+  <script src="js/local-explainer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

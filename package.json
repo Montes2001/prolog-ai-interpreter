@@ -1,0 +1,10 @@
+{
+  "name": "prolog-ai-interpreter",
+  "version": "1.0.0",
+  "description": "Aplicación web con agente de IA que ejecuta y explica código Prolog",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.js",
+    "test": "node tests/engine.test.js"
+  }
+}
